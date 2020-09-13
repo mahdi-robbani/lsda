@@ -1,0 +1,143 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{bbm}
+
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle#1$}}
+{\mbox{\boldmath$\textstyle#1$}}
+{\mbox{\boldmath$\scriptstyle#1$}}
+{\mbox{\boldmath$\scriptscriptstyle#1$}}}
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=30mm,
+ right=30mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\lstdefinestyle{mystyle}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color[HTML]{F7F7F7},
+  rulecolor=\color[HTML]{EEEEEE},
+  identifierstyle=\color[HTML]{24292E},
+  emphstyle=\color[HTML]{005CC5},
+  keywordstyle=\color[HTML]{D73A49},
+  commentstyle=\color[HTML]{6A737D},
+  stringstyle=\color[HTML]{032F62},
+  emph={@property,self,range,True,False},
+  morekeywords={super,with,as,lambda},
+  literate=%
+    {+}{{{\color[HTML]{D73A49}+}}}1
+    {-}{{{\color[HTML]{D73A49}-}}}1
+    {*}{{{\color[HTML]{D73A49}*}}}1
+    {/}{{{\color[HTML]{D73A49}/}}}1
+    {=}{{{\color[HTML]{D73A49}=}}}1
+    {/=}{{{\color[HTML]{D73A49}=}}}1,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=none,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=4,
+  frame=single,
+}
+\lstset{style=mystyle}
+
+\newcommand{\notebook}{\texttt{LSDA2020\_Traffic\_Signs\_Assignment.ipynb}}
+\newcommand{\code}[1]{\lstinline[columns=fixed]{#1}}
+
+\begin{document}
+
+\title{Homework 3: Ensemble Methods and Recurrent Neural Networks\\[0.5ex]\Large{Large-Scale Data Analysis 2020}}
+\author{\textcolor{red}{Name and KU ID (ABC123)}}
+\date{\today}
+\maketitle
+
+
+\newcommand{\tsize}{n}
+\newcommand{\indicator}{\mathbbm{I}}
+
+\section{AdaBoost (?? pts.)}
+Let $\{(\vec{x}_1,y_1),\ldots,(\vec{x}_\tsize,y_\tsize)\} \in (\mathbb{R}^d\times\{-1,1\})^\tsize   $ be the training data,   $t= 1,  \dots, T$ denote the boosting rounds. 
+At round $t$, 
+$w_i^{(t)}$ is the weight of training pattern $i$, $h^{(t)}$ is the base classifier from round $t$,
+$\alpha^{(t)}$ is
+the  importance  of this classifier, $\varepsilon^{(t)} = \sum_{j=1}^\tsize w_j \indicator (h^{(t)}(\vec{x}_j) \neq y_j)$, and the aggregated classifier is
+$f^{(t)} = \sum_{i=1}^t \alpha^{(i)} h^{(i)}$. 
+
+\subsection{Step 1}
+The goal is to prove for each $i$ at any round $t$
+\begin{equation}
+ w_i^{(t+1)} =   w_i^{(t)} \frac{\exp\left(-\alpha^{(t)}  h^{(t)}(\vec x_i) y_i
+    \right)}{2\sqrt{ \varepsilon^{(t)}
+      \big(1-\varepsilon^{(t)} \big)}}\enspace.
+\end{equation}
+We start from the update of the weights as defined in the lecture:
+\begin{equation}
+    w_i^{(t+1)} =\begin{cases}
+    w_i^{(t)}\big/\big(2\epsilon^{(t)}\big) & \text{if $h^{(t)} (\vec{x}_j) \neq y_j$}\\
+    w_i^{(t)}\big/\big(2\big(1-\epsilon^{(t)}\big)\big) & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\subsection{Step 2}
+The goal is to prove for each $i$ at any round $t$
+\begin{equation}
+  w_i^{(t)} \frac{\exp\left(-\alpha^{(t)}  h^{(t)}(\vec x_i) y_i
+    \right)}{2\sqrt{ \varepsilon^{(t)}
+      \big(1-\varepsilon^{(t)} \big)}}
+=   \frac{\exp\left(-f^{(t)}(\vec x_i) y_i
+    \right)}{\tsize \prod_{\tau=1}^{t}2\sqrt{ \varepsilon^{(\tau)}
+      \big(1-\varepsilon^{(\tau)} \big)}}\enspace.
+\end{equation}
+
+
+\subsection{Step 3}
+The goal is to prove for each $i$ at any round $t$
+\begin{equation}
+   \frac{\exp\left(-f^{(t)}(\vec x_i) y_i
+    \right)}{\tsize \prod_{\tau=1}^{t}2\sqrt{ \varepsilon^{(\tau)}
+      \big(1-\varepsilon^{(\tau)} \big)}}
+=   \frac{\exp\left(-f^{(t)}(\vec x_i) y_i
+    \right)}{\sum_{l=1}^{n}  \exp\left(-f^{(t)}(\vec x_l) y_l
+    \right)  }\enspace.
+\end{equation}
+
+The weights are normalized, that is, \dots
+
+
+\section{Gradient Boosting}
+
+
+\section{Recurrent Neural Networks}
+Replace the simple recurrent layer in \texttt{LSDA2020\_RNN1.ipynb} notebook with a LSTM layer. 
+Follow the equations from \texttt{LSDA2020\_RNN2.ipynb} to implement the LSTM. 
+You will need to add more variables and extend the step function. 
+Also remember that the LSTM not only transfers the hidden state $h_t$ to the next time step $t+1$, but also the cell state $c_t$.
+
+\section{Recurrent Neural Networks in Keras}
+Add different components to the RNN from \texttt{LSDA2020\_RNN2.ipynb} and report the results on the validation set (the changed parts in the code).
+\begin{enumerate}
+    \item Add bidirectional sequence processing by utilizing \texttt{tf.keras.layers.Bidirectional}.
+    \item Stack 2 LSTM layers. What is the difference to bidirectional processing? (you may need to use the \texttt{return\_sequences} parameter)
+    \item Add a 1-d convolution layer (\texttt{tf.keras.layers.Conv1D}) before the recurrent part. You will need to reshape the data, you can use the \texttt{tf.keras.layers.Reshape} layer for that.
+    \item Gradient clipping can be a helpful to train recurrent networks. Keras offers to clip gradients directly through the optimizer. Try this with clip values of 0.1, 1, and 10.
+\end{enumerate}
+
+\bibliographystyle{abbrv}
+\bibliography{lsda}
+
+\end{document}
+
