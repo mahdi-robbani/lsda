@@ -1,0 +1,107 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{listings}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=30mm,
+ right=30mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\lstdefinestyle{mystyle}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color[HTML]{F7F7F7},
+  rulecolor=\color[HTML]{EEEEEE},
+  identifierstyle=\color[HTML]{24292E},
+  emphstyle=\color[HTML]{005CC5},
+  keywordstyle=\color[HTML]{D73A49},
+  commentstyle=\color[HTML]{6A737D},
+  stringstyle=\color[HTML]{032F62},
+  emph={@property,self,range,True,False},
+  morekeywords={super,with,as,lambda},
+  literate=%
+    {+}{{{\color[HTML]{D73A49}+}}}1
+    {-}{{{\color[HTML]{D73A49}-}}}1
+    {*}{{{\color[HTML]{D73A49}*}}}1
+    {/}{{{\color[HTML]{D73A49}/}}}1
+    {=}{{{\color[HTML]{D73A49}=}}}1
+    {/=}{{{\color[HTML]{D73A49}=}}}1,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=none,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=4,
+  frame=single,
+}
+\lstset{style=mystyle}
+
+\newcommand{\notebook}{\texttt{LSDA2020\_Traffic\_Signs\_Assignment.ipynb}}
+\newcommand{\code}[1]{\lstinline[columns=fixed]{#1}}
+
+\begin{document}
+
+\title{Homework 2: Neural Networks with
+  TensorFlow\\[0.5ex]\Large{Large-Scale Data Analysis 2020}}
+\author{\textcolor{red}{Name and KU ID (ABC123)}}
+\date{\today}
+\maketitle
+
+
+\section{Standard Neural Network}
+\subsection{Adding a layer}
+This is how you can add code in a block
+\begin{lstlisting}
+tf.keras.models.Sequential([
+  tf.keras.layers.Dense(64, activation='sigmoid', input_shape=(1,), name='hidden1'),
+  tf.keras.layers.Dense(1, activation='linear', name='output')
+])
+\end{lstlisting}
+and this shows how you can do it inline \code{tf.keras.layers.concatenate}.
+\subsection{Shortcut connections}
+
+\section{Convolutional neural network for traffic sign recognition}
+
+
+\subsection{Adding batch normalization}
+\subsection{Trainable parameters}
+
+\dots The $n$-th layer is a $X$ layer. Each neuron in the layer computes the function
+$\dots$ The parameters are \dots The input to each neuron is \dots
+Thus, the overall number of trainable parameters are \dots
+\subsection{Data augmentation}
+
+\section{Experimental architecture comparison}
+
+
+\section{Keras training and testing mode}
+Models and layers in Keras have a Boolean flag that can put them
+in training and testing mode by specifying \code{training=True} and \code{training=False}, respectively.
+
+
+\section{Challenge (optional)}
+I did the following modification to the model and the training process:
+
+The results are shown in \dots
+
+Please find the code attached in the file \dots
+
+
+
+\bibliographystyle{abbrv}
+\bibliography{lsda}
+
+\end{document}
+
