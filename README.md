@@ -6,7 +6,7 @@ Assignments for NDAK15018U [Large-Scale Data Analysis](https://kurser.ku.dk/cour
 ### 1. Kaggle competition, time series forecasting (group assignment)
 * [Assignment questions](https://github.com/mahdi-robbani/lsda/blob/master/HW1/report/HW1.pdf)
 * [Hand-in](https://github.com/mahdi-robbani/lsda/blob/master/HW1/report/assigment1_handin.pdf)
-* [Code final model](https://github.com/mahdi-robbani/lsda/blob/master/HW1/lgbm/customtest_RMSE_model6.ipynb)
+* [Code final model](https://github.com/mahdi-robbani/lsda/blob/master/HW1/code/final_model.ipynb)
 
 ### 2. Convolutional Neural Network for traffic sign recognition
 * [Assignment questions](https://github.com/mahdi-robbani/lsda/blob/master/HW2/LSDA2020_DL.pdf)
